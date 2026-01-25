@@ -2,6 +2,9 @@
 
 > 🎨 将 Markdown 文稿转化为精美、可编辑的 PPT 页面
 
+<img width="2816" height="1536" alt="image" src="https://github.com/user-attachments/assets/2454e688-d3b8-40a2-a3f8-893bbe5060ee" />
+
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## ✨ 项目简介
