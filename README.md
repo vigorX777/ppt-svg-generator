@@ -172,7 +172,6 @@
 
 <img width="2003" height="1366" alt="PixPin_2026-01-25_15-58-40" src="https://github.com/user-attachments/assets/97847c7f-5dc3-4a39-b4d8-ee3dc7d0396b" />
 
-
 #### 🎨 模式二：自定义风格
 
 输入你的品牌色和风格偏好，生成定制化设计规范。
