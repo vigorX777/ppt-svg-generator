@@ -191,6 +191,66 @@ slide-04-behavior-goal.svg
 - 建议保留原始 SVG 作为备份
 ```
 
+### Step 6: 导出提示
+
+生成完成后，询问用户是否需要导出为 PDF 或 PPTX 格式：
+
+```
+📤 是否需要导出为演示文档？
+
+请选择导出格式：
+1. PDF - 适合打印和分发
+2. PPTX - 适合进一步编辑
+3. 两者都要
+4. 跳过导出
+
+请输入选项 [1/2/3/4]:
+```
+
+#### 6.1 导出为 PDF
+
+```bash
+python scripts/export_pdf.py ./ppt-output/
+```
+
+输出示例：
+```
+📄 Found 14 SVG file(s)
+  [1/14] Converting slide-01-cover.svg... ✅
+  [2/14] Converting slide-02-intro.svg... ✅
+  ...
+✅ PDF exported: ./ppt-output/slides-2024-01-15.pdf (14 pages)
+```
+
+#### 6.2 导出为 PPTX
+
+```bash
+node scripts/export_pptx.js ./ppt-output/
+```
+
+输出示例：
+```
+📊 Creating presentation with 14 slide(s)...
+  ✓ Added: slide-01-cover.svg
+  ✓ Added: slide-02-intro.svg
+  ...
+✅ PPTX exported: ./ppt-output/slides-2024-01-15.pptx (14 slides)
+```
+
+#### 6.3 导出完成
+
+```
+🎉 导出完成！
+
+📁 生成的文件：
+├── ./ppt-output/slides-2024-01-15.pdf
+└── ./ppt-output/slides-2024-01-15.pptx
+
+💡 提示：您也可以稍后使用 /ppt-export 命令单独导出
+```
+
+> 💡 如果用户选择「跳过」，直接结束流程，提示可稍后使用 `/ppt-export` 命令。
+
 ## 输出规范
 
 ### 文件结构

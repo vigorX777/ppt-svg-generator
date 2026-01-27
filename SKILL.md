@@ -41,7 +41,11 @@ allowed-tools: Read Write Glob Grep Bash WebSearch WebFetch
 │           ↓ 批量生成 SVG 文件                                    │
 │           ↓ 自动应用 PPT 兼容性规范                              │
 │                                                                 │
-│  步骤 4️⃣  导入 PPT → 转换为形状 → 微调完成 ✅                     │
+│  步骤 4️⃣  /ppt-export（可选）                                     │
+│           ↓ 导出为 PDF/PPTX 文件                                 │
+│           ↓ 适合打印分发或直接演示                               │
+│                                                                 │
+│  步骤 5️⃣  导入 PPT → 转换为形状 → 微调完成 ✅                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -211,6 +215,44 @@ allowed-tools: Read Write Glob Grep Bash WebSearch WebFetch
 - 自动应用 PPT 兼容性规范（生成时会告知具体规范）
 
 **详细指令**：[commands/generate.md](commands/generate.md)
+
+---
+
+### `/ppt-export` - 导出为 PDF/PPTX
+
+**用途**：将生成的 SVG 页面批量导出为 PDF 文档或 PPTX 幻灯片
+
+**语法**：
+```
+/ppt-export [--format=pdf|pptx|both] [--output=输出目录]
+```
+
+**参数**：
+| 参数 | 必需 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--format` | ❌ | `both` | 导出格式：`pdf`、`pptx` 或 `both` |
+| `--output` | ❌ | `./ppt-output/` | 导出文件存放目录 |
+
+**前置条件**：需要先执行 `/ppt-generate` 或 `/ppt-quick` 生成 SVG 文件
+
+**示例**：
+```bash
+# 导出为 PDF 和 PPTX（默认）
+/ppt-export
+
+# 仅导出 PDF
+/ppt-export --format=pdf
+
+# 导出到指定目录
+/ppt-export --format=pptx --output=./final/
+
+# 自然语言方式
+导出为 PDF
+把生成的 SVG 导出成 PPT
+生成 PDF 和 PPTX 文件
+```
+
+**详细指令**：[commands/export.md](commands/export.md)
 
 ---
 

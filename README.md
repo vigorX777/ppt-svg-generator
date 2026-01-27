@@ -37,6 +37,21 @@
 - 安装 [OpenCode](https://github.com/opencode-ai/opencode)
 - 将本项目放置于 OpenCode 的 skills 目录
 
+### 依赖安装（可选，用于导出功能）
+
+如果需要使用 `/ppt-export` 命令将 SVG 导出为 PDF 或 PPTX：
+
+```bash
+cd scripts/
+npm install
+```
+
+这将自动安装所有依赖并下载 Chromium 浏览器（用于 PDF 渲染）。
+
+**跨平台支持**：✅ macOS / ✅ Windows / ✅ Linux
+
+> 💡 如果只需要生成 SVG 文件导入 PPT，无需安装这些依赖。
+
 ### 使用流程
 
 ```
@@ -62,7 +77,11 @@
 │           ↓ 批量生成 SVG 文件                                    │
 │           ↓ 自动应用 PPT 兼容性规范                              │
 │                                                                 │
-│  步骤 4️⃣  导入 PPT → 转换为形状 → 微调完成 ✅                     │
+│  步骤 4️⃣  /ppt-export（可选）                                     │
+│           ↓ 导出为 PDF/PPTX 文件                                 │
+│           ↓ 适合打印分发或直接演示                               │
+│                                                                 │
+│  步骤 5️⃣  导入 PPT → 转换为形状 → 微调完成 ✅                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -258,6 +277,50 @@
 
 ---
 
+### `/ppt-export` - 📤 导出为 PDF/PPTX
+
+将生成的 SVG 页面批量导出为可直接演示的 PDF 文档或 PPTX 幻灯片。
+
+**语法**：
+```bash
+/ppt-export [--format=pdf|pptx|both] [--output=输出目录]
+```
+
+**参数**：
+
+| 参数 | 必需 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--format` | ❌ | `both` | 导出格式：`pdf`、`pptx` 或 `both` |
+| `--output` | ❌ | `./ppt-output/` | 导出文件存放目录 |
+
+**前置条件**：需要先执行 `/ppt-generate` 或 `/ppt-quick` 生成 SVG 文件
+
+**示例**：
+
+```bash
+# 导出为 PDF 和 PPTX（默认）
+/ppt-export
+
+# 仅导出 PDF
+/ppt-export --format=pdf
+
+# 导出到指定目录
+/ppt-export --format=pptx --output=./final/
+
+# 自然语言方式
+导出为 PDF
+把生成的 SVG 导出成 PPT
+生成 PDF 和 PPTX 文件
+```
+
+**输出**：
+- 文件命名：`slides-YYYY-MM-DD.pdf` / `slides-YYYY-MM-DD.pptx`
+- 如果文件已存在，自动添加序号：`slides-YYYY-MM-DD-2.pdf`
+
+**详细文档**：[commands/export.md](commands/export.md)
+
+---
+
 ## 🎨 预设风格
 
 | 风格 | 特点 | 适用场景 |
@@ -279,10 +342,15 @@ ppt-svg-generator/
 ├── SKILL.md              # Skill 配置文件
 ├── README.md             # 项目说明（本文件）
 ├── commands/             # 命令定义
-│   ├── quick.md          # /ppt-quick 一键生成 ⭐ 新增
+│   ├── quick.md          # /ppt-quick 一键生成
 │   ├── analyze.md        # /ppt-analyze 文稿分析
 │   ├── design.md         # /ppt-design 风格设计
-│   └── generate.md       # /ppt-generate 批量生成
+│   ├── generate.md       # /ppt-generate 批量生成
+│   └── export.md         # /ppt-export 导出 PDF/PPTX
+├── scripts/              # 导出脚本
+│   ├── package.json      # npm 依赖声明
+│   ├── export_pdf.js     # SVG 转 PDF（Playwright）
+│   └── export_pptx.js    # SVG 转 PPTX（pptxgenjs）
 ├── specs/                # 规范文档
 │   ├── svg-compatibility.md  # SVG→PPT 兼容性规范
 │   ├── design-system.md      # 设计系统（字体、间距）
@@ -337,6 +405,7 @@ ppt-svg-generator/
 | [文稿分析命令](commands/analyze.md) | `/ppt-analyze` 详细说明 |
 | [风格设计命令](commands/design.md) | `/ppt-design` 详细说明 |
 | [批量生成命令](commands/generate.md) | `/ppt-generate` 详细说明 |
+| [导出命令](commands/export.md) | `/ppt-export` PDF/PPTX 导出 |
 | [SVG 兼容性规范](specs/svg-compatibility.md) | PPT 转换的 5 条核心规则 |
 | [设计系统](specs/design-system.md) | 字体、间距、组件规范 |
 | [页面模板](specs/page-templates.md) | 各类页面的布局定义 |
