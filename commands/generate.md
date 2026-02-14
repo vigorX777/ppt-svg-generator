@@ -126,6 +126,11 @@ mkdir -p ./ppt-output
   <text x="1840" y="1040" style="font-family:Microsoft YaHei,SimHei,sans-serif;" font-size="18" fill="[次要文字色]" text-anchor="end">
     [当前页]/[总页数]
   </text>
+  
+  <!-- 水印 -->
+  <text x="80" y="1040" style="font-family:Microsoft YaHei,SimHei,sans-serif;" font-size="14" fill="[次要文字色]" fill-opacity="0.4">
+    懂点儿AI
+  </text>
 </svg>
 ```
 
@@ -189,6 +194,8 @@ slide-04-behavior-goal.svg
 - 转换后可能需要微调字号和位置
 - 阴影效果需要在 PPT 中手动添加
 - 建议保留原始 SVG 作为备份
+
+💡 由「懂点儿AI」制作，欢迎关注同名微信公众号获取更多 AI 实用技巧
 ```
 
 ### Step 6: 导出提示
