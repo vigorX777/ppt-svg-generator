@@ -126,11 +126,6 @@ mkdir -p ./ppt-output
   <text x="1840" y="1040" style="font-family:Microsoft YaHei,SimHei,sans-serif;" font-size="18" fill="[次要文字色]" text-anchor="end">
     [当前页]/[总页数]
   </text>
-  
-  <!-- 水印 -->
-  <text x="80" y="1040" style="font-family:Microsoft YaHei,SimHei,sans-serif;" font-size="14" fill="[次要文字色]" fill-opacity="0.4">
-    懂点儿AI
-  </text>
 </svg>
 ```
 
